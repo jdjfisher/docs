@@ -91,7 +91,7 @@ Para conectar tu proyecto Astro con tu espacio de Contentful, instala los siguie
 Después, crea un nuevo archivo llamado `contentful.ts` en el directorio `src/lib/` de tu proyecto.
 
 ```ts title="src/lib/contentful.ts"
-import contentful from "contentful";
+import * as contentful from "contentful";
 
 export const contentfulClient = contentful.createClient({
   space: import.meta.env.CONTENTFUL_SPACE_ID,
@@ -218,8 +218,9 @@ Presiona **Publish** para guardar la entrada. Acabas de crear tu primer post.
 
 Crea una nueva interfaz llamada `BlogPost` y agrégala a tu archivo `contentful.ts` en `src/lib/`. Esta interfaz coincidirá con los campos de tu tipo de contenido de publicación de blog en Contentful. Lo usarás para tipar tu respuesta de entradas de publicaciones de blog.
 
-```ts title="src/lib/contentful.ts" ins=", { EntryFieldTypes }" ins={3-12}
-import contentful, { EntryFieldTypes } from "contentful";
+```ts title="src/lib/contentful.ts" ins={2-13}
+import * as contentful from "contentful";
+import type { EntryFieldTypes } from "contentful";
 
 export interface BlogPost {
   contentTypeId: "blogPost",

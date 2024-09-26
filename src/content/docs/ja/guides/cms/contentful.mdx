@@ -93,7 +93,7 @@ Contentfulスペースと接続するために、次の中から好みのパッ�
 次に、プロジェクトの`src/lib`に`contentful.ts`というファイルを作成します。
 
 ```ts title="src/lib/contentful.ts"
-import contentful from "contentful";
+import * as contentful from "contentful";
 
 export const contentfulClient = contentful.createClient({
   space: import.meta.env.CONTENTFUL_SPACE_ID,
@@ -221,8 +221,9 @@ Contentfulスペースの**Content**セクションで、**Add Entry**ボタン�
 
 `BlogPost`というインターフェイスを作成し`src/lib`に`contentful.ts`というファイルを追加してください。このインターフェイスはContentfulのブログ記事のコンテンツタイプと一致します。ブログエントリーのレスポンスと型を一致させるときに利用します。
 
-```ts title="src/lib/contentful.ts" ins=", { EntryFieldTypes }" ins={3-12}
-import contentful, { EntryFieldTypes } from "contentful";
+```ts title="src/lib/contentful.ts" ins={2-13}
+import * as contentful from "contentful";
+import type { EntryFieldTypes } from "contentful";
 
 export interface BlogPost {
   contentTypeId: "blogPost",
